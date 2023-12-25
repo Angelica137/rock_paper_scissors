@@ -50,12 +50,6 @@ class Game:
         print("Game over!")
 
 
-'''
 if __name__ == '__main__':
-    game = Game(Player(), Player())
+    game = Game(RandomPlayer(), RandomPlayer())
     game.play_game()
-'''
-
-rp = RandomPlayer()
-
-print(rp.move())
