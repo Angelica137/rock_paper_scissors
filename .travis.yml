@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.x" # Replace with your Python version
+  - "3.x"
 
 install:
   - pip install flake8
