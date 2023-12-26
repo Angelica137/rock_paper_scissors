@@ -26,8 +26,8 @@ class RandomPlayer(Player):
 
 class HumanPlayer(Player):
     def move(self):
-        return input("Hello, player, what is your move? r: rock; p: paper; s: \
-scissors")
+        return input("Hello, player, what is your move?\nEnter r: rock; p: \
+paper; s: scissors:\n")
 
 
 def beats(one, two):
@@ -69,5 +69,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(RandomPlayer(), RandomPlayer())
+    game = Game(HumanPlayer(), RandomPlayer())
     game.play_game()
