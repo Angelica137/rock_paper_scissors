@@ -41,6 +41,8 @@ class Game:
         print(f"Player 1: {move1}  Player 2: {move2}")
         if beats(move1, move2):
             print("Player 1 WINS")
+        else:
+            print("FAIL")
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
 

@@ -2,6 +2,7 @@ from match import *
 import random
 from unittest.mock import patch
 import io
+import pytest
 
 
 def test_random_player_initialisation():
@@ -73,3 +74,24 @@ def test_play_round_beat_three():
         # Add assertions based on your expected output
         assert "Player 1: paper  Player 2: rock" in output
         assert "Player 1 WINS" in output
+
+
+def test_p2_beats_p1_scissors_v_rock(capsys):
+    with patch('match.beats', return_value=False), \
+         patch.object(Player, 'move', side_effect=['scissors', 'rock']):
+
+        game = Game(Player(), Player())
+
+        # Call play_round
+        game.play_round()
+
+        # Capture the printed output
+        captured = capsys.readouterr()
+
+        # Print the captured output to the terminal
+        print("Captured Output:")
+        print(captured.out)
+
+        # Access captured stdout and check its content
+        assert "Player 1: scissors  Player 2: rock" in captured.out
+        assert "Player 1 WINS" in captured.out
