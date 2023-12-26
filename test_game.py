@@ -230,3 +230,13 @@ class TestReflectPlayer(unittest.TestCase):
 
             self.assertEqual(reflect_player.my_prev_move, 'rock')
             self.assertEqual(reflect_player.their_prev_move, 'scissors')
+
+
+    def test_move(self):
+        reflect_player = ReflectPlayer()
+
+        reflect_player.their_prev_move = None
+        self.assertEqual(reflect_player.move(), 'rock')
+
+        reflect_player.their_prev_move = 'paper'
+        self.assertEqual(reflect_player.move(), 'paper')
