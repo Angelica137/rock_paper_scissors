@@ -2,7 +2,7 @@ from match import *
 import random
 from unittest.mock import patch
 import io
-import pytest
+import unittest
 
 
 def test_random_player_initialisation():
@@ -202,6 +202,18 @@ def test_huamn_player_initialisation():
     assert callable(hp.move)
 
 
-def test_huamn_player_user_input():
-    hp = HumanPlayer()
-    assert hp.move() == "test"
+class TestHumanPlayer(unittest.TestCase):
+    @patch('builtins.input', return_value='r')
+    def test_move_returns_rock(self, mock_input):
+        human_player = HumanPlayer()
+        self.assertEqual(human_player.move(), 'r')
+
+    @patch('builtins.input', return_value='p')
+    def test_move_returns_paper(self, mock_input):
+        human_player = HumanPlayer()
+        self.assertEqual(human_player.move(), 'p')
+
+    @patch('builtins.input', return_value='s')
+    def test_move_returns_scissors(self, mock_input):
+        human_player = HumanPlayer()
+        self.assertEqual(human_player.move(), 's')

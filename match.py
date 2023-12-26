@@ -26,8 +26,8 @@ class RandomPlayer(Player):
 
 class HumanPlayer(Player):
     def move(self):
-        return "test"
-
+        return input("Hello, player, what is your move? r: rock; p: paper; s: \
+scissors")
 
 
 def beats(one, two):
