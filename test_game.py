@@ -51,5 +51,5 @@ def test_play_round_beat_two():
         output = mock_stdout.getvalue().strip()
 
         # Add assertions based on your expected output
-        assert "Player 1: scissors  Player 2: rock" in output
+        assert "Player 1: scissors  Player 2: paper" in output
         assert "Player 1 WINS" in output
