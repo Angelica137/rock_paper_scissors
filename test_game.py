@@ -34,3 +34,22 @@ def test_play_round_beat_one():
         assert "Player 1: rock  Player 2: scissors" in output
         assert "Player 1 WINS" in output
 
+
+def test_play_round_beat_two():
+    '''
+    Test p1 = rock, p2 = scissors -> p1 wins
+    '''
+    with patch('match.beats', return_value=True), \
+         patch.object(Player, 'move', side_effect=['scissors', 'paper']) as mock_move:
+        
+        game = Game(Player(), Player())
+
+        # Redirect print statements to a StringIO for assertion
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            game.play_round()
+
+        output = mock_stdout.getvalue().strip()
+
+        # Add assertions based on your expected output
+        assert "Player 1: scissors  Player 2: rock" in output
+        assert "Player 1 WINS" in output
