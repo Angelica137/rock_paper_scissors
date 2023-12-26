@@ -25,7 +25,8 @@ class RandomPlayer(Player):
 
 
 class HumanPlayer(Player):
-    pass
+    def move(self):
+        return "test"
 
 
 
