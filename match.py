@@ -40,6 +40,12 @@ class ReflectPlayer():
         self.my_prev_move = my_prev_move
         self.their_prev_move = their_prev_move
 
+    def move(self):
+        if self.their_prev_move is None:
+            return 'rock'
+        else:
+            return self.their_prev_move
+
 
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
