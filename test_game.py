@@ -31,7 +31,7 @@ def test_play_round_beat_one():
         output = mock_stdout.getvalue().strip()
 
         # Add assertions based on your expected output
-        assert "Player 1: rock  Player 2: scissors" in output
+        assert "Player 1: rock Player 2: scissors" in output
         assert "Player 1 wins" in output
 
 
@@ -49,7 +49,7 @@ def test_play_round_beat_two():
         output = mock_stdout.getvalue().strip()
 
         # Add assertions based on your expected output
-        assert "Player 1: scissors  Player 2: paper" in output
+        assert "Player 1: scissors Player 2: paper" in output
         assert "Player 1 wins" in output
 
 
@@ -67,7 +67,7 @@ def test_play_round_beat_three():
         output = mock_stdout.getvalue().strip()
 
         # Add assertions based on your expected output
-        assert "Player 1: paper  Player 2: rock" in output
+        assert "Player 1: paper Player 2: rock" in output
         assert "Player 1 wins" in output
 
 
@@ -88,7 +88,7 @@ def test_p2_beats_p1_scissors_v_rock(capsys):
         print(captured.out)
 
         # Access captured stdout and check its content
-        assert "Player 1: scissors  Player 2: rock" in captured.out
+        assert "Player 1: scissors Player 2: rock" in captured.out
         assert "Player 2 wins" in captured.out
 
 
@@ -109,7 +109,7 @@ def test_p2_beats_p1_paper_v_scissors(capsys):
         print(captured.out)
 
         # Access captured stdout and check its content
-        assert "Player 1: paper  Player 2: scissors" in captured.out
+        assert "Player 1: paper Player 2: scissors" in captured.out
         assert "Player 2 wins" in captured.out
 
 
@@ -130,7 +130,7 @@ def test_p2_beats_p1_rock_v_paper(capsys):
         print(captured.out)
 
         # Access captured stdout and check its content
-        assert "Player 1: rock  Player 2: paper" in captured.out
+        assert "Player 1: rock Player 2: paper" in captured.out
         assert "Player 2 wins" in captured.out
 
 
@@ -151,5 +151,47 @@ def test_match_rock_v_rock(capsys):
         print(captured.out)
 
         # Access captured stdout and check its content
-        assert "Player 1: rock  Player 2: rock" in captured.out
+        assert "Player 1: rock Player 2: rock" in captured.out
+        assert "It is a tie" in captured.out
+
+
+def test_match_paper_v_paper(capsys):
+    with patch('match.beats', return_value=False), \
+         patch.object(Player, 'move', side_effect=['paper', 'paper']):
+
+        game = Game(Player(), Player())
+
+        # Call play_round
+        game.play_round()
+
+        # Capture the printed output
+        captured = capsys.readouterr()
+
+        # Print the captured output to the terminal
+        print("Captured Output:")
+        print(captured.out)
+
+        # Access captured stdout and check its content
+        assert "Player 1: paper Player 2: paper" in captured.out
+        assert "It is a tie" in captured.out
+
+
+def test_match_paper_v_paper(capsys):
+    with patch('match.beats', return_value=False), \
+         patch.object(Player, 'move', side_effect=['scissors', 'scissors']):
+
+        game = Game(Player(), Player())
+
+        # Call play_round
+        game.play_round()
+
+        # Capture the printed output
+        captured = capsys.readouterr()
+
+        # Print the captured output to the terminal
+        print("Captured Output:")
+        print(captured.out)
+
+        # Access captured stdout and check its content
+        assert "Player 1: scissors Player 2: scissors" in captured.out
         assert "It is a tie" in captured.out

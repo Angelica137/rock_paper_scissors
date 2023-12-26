@@ -44,7 +44,7 @@ class Game:
     def play_round(self):
         move1 = self.p1.move()
         move2 = self.p2.move()
-        print(f"Player 1: {move1}  Player 2: {move2}")
+        print(f"Player 1: {move1} Player 2: {move2}")
         if beats(move1, move2):
             print("Player 1 wins")
         if tie(move1, move2):
