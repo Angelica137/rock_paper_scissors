@@ -217,3 +217,16 @@ class TestHumanPlayer(unittest.TestCase):
     def test_move_returns_scissors(self, mock_input):
         human_player = HumanPlayer()
         self.assertEqual(human_player.move(), 's')
+
+
+class TestReflectPlayer(unittest.TestCase):
+    def test_prev_round(self):
+        reflect_player = ReflectPlayer()
+
+        with patch('match.Player.learn') as mock_learn:
+            reflect_player.prev_round('rock', 'scissors')
+
+            mock_learn.assert_called_once_with('rock', 'scissors')
+
+            self.assertEqual(reflect_player.my_prev_move, 'rock')
+            self.assertEqual(reflect_player.their_prev_move, 'scissors')

@@ -30,6 +30,17 @@ class HumanPlayer(Player):
 paper; s: scissors:\n")
 
 
+class ReflectPlayer():
+    def __init__(self):
+        self.my_prev_move = None
+        self.their_prev_move = None
+
+    def prev_round(self, my_prev_move, their_prev_move):
+        Player().learn(my_prev_move, their_prev_move)
+        self.my_prev_move = my_prev_move
+        self.their_prev_move = their_prev_move
+
+
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or
