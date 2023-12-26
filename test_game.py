@@ -37,7 +37,7 @@ def test_play_round_beat_one():
 
 def test_play_round_beat_two():
     '''
-    Test p1 = rock, p2 = scissors -> p1 wins
+    Test p1 = scissors, p2 = rock -> p1 wins
     '''
     with patch('match.beats', return_value=True), \
          patch.object(Player, 'move', side_effect=['scissors', 'paper']) as mock_move:
@@ -57,7 +57,7 @@ def test_play_round_beat_two():
 
 def test_play_round_beat_three():
     '''
-    Test p1 = rock, p2 = scissors -> p1 wins
+    Test p1 = paper, p2 = rock -> p1 wins
     '''
     with patch('match.beats', return_value=True), \
          patch.object(Player, 'move', side_effect=['paper', 'rock']) as mock_move:
