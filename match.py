@@ -30,6 +30,12 @@ def beats(one, two):
             (one == 'paper' and two == 'rock'))
 
 
+def tie(one, two):
+    return ((one == 'rock' and two == 'rock') or
+            (one == 'scissors' and two == 'scissors') or
+            (one == 'paper' and two == 'paper'))
+
+
 class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
@@ -40,9 +46,11 @@ class Game:
         move2 = self.p2.move()
         print(f"Player 1: {move1}  Player 2: {move2}")
         if beats(move1, move2):
-            print("Player 1 WINS")
+            print("Player 1 wins")
+        if tie(move1, move2):
+            print("It is a tie")
         else:
-            print("FAIL")
+            print("Player 2 wins")
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
 
