@@ -200,3 +200,8 @@ def test_match_paper_v_paper(capsys):
 def test_huamn_player_initialisation():
     hp = HumanPlayer()
     assert callable(hp.move)
+
+
+def test_huamn_player_user_input():
+    hp = HumanPlayer()
+    assert hp.move() == "test"
