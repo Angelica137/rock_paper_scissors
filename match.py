@@ -24,6 +24,11 @@ class RandomPlayer(Player):
         return random.choice(moves)
 
 
+class HumanPlayer(Player):
+    pass
+
+
+
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or

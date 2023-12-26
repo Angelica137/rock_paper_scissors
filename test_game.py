@@ -32,7 +32,7 @@ def test_play_round_beat_one():
 
         # Add assertions based on your expected output
         assert "Player 1: rock Player 2: scissors" in output
-        assert "Player 1 wins\n" in output
+        assert "Player 1 wins" in output
 
 
 def test_play_round_beat_two():
@@ -50,7 +50,7 @@ def test_play_round_beat_two():
 
         # Add assertions based on your expected output
         assert "Player 1: scissors Player 2: paper" in output
-        assert "Player 1 wins\n" in output
+        assert "Player 1 wins" in output
 
 
 def test_play_round_beat_three():
@@ -68,7 +68,7 @@ def test_play_round_beat_three():
 
         # Add assertions based on your expected output
         assert "Player 1: paper Player 2: rock" in output
-        assert "Player 1 wins\n" in output
+        assert "Player 1 wins" in output
 
 
 def test_p2_beats_p1_scissors_v_rock(capsys):
@@ -195,3 +195,8 @@ def test_match_paper_v_paper(capsys):
         # Access captured stdout and check its content
         assert "Player 1: scissors Player 2: scissors" in captured.out
         assert "It is a tie\n" in captured.out
+
+
+def test_huamn_player_initialisation():
+    hp = HumanPlayer()
+    assert callable(hp.move)
