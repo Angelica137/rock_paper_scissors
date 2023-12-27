@@ -228,3 +228,9 @@ class TestReflectPlayer(unittest.TestCase):
     def test_reflet_player_move_1_returns_random(self, mock_input):
         rp = ReflectPlayer()
         self.assertEqual(rp.move(), 'rock')
+
+    def test_reflect_player_learn(self):
+        rp = ReflectPlayer()
+        rp.learn('scissors', 'paper')
+
+        self.assertEqual(rp.their_move, 'paper')
