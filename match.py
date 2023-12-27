@@ -28,8 +28,12 @@ class RandomPlayer(Player):
 
 class HumanPlayer(Player):
     def move(self):
-        return input("Hello, player, what is your move?\nEnter r: rock; p: \
-paper; s: scissors:\n")
+        while True:
+            move = input("Hello, player, what is your move?")
+            if move in moves:
+                return move
+            else:
+                return (f'Oops {move} is not a valid option')
 
 
 class ReflectPlayer(Player):

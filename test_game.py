@@ -197,26 +197,35 @@ def test_match_paper_v_paper(capsys):
         assert "It is a tie\n" in captured.out
 
 
-def test_huamn_player_initialisation():
-    hp = HumanPlayer()
-    assert callable(hp.move)
+
+
 
 
 class TestHumanPlayer(unittest.TestCase):
-    @patch('builtins.input', return_value='r')
+    def test_human_player_initialisation(self):
+        hp = HumanPlayer()
+        assert callable(hp.move)
+
+    @patch('builtins.input', return_value='rock')
     def test_move_returns_rock(self, mock_input):
         human_player = HumanPlayer()
-        self.assertEqual(human_player.move(), 'r')
+        self.assertEqual(human_player.move(), 'rock')
 
-    @patch('builtins.input', return_value='p')
+    @patch('builtins.input', return_value='paper')
     def test_move_returns_paper(self, mock_input):
         human_player = HumanPlayer()
-        self.assertEqual(human_player.move(), 'p')
+        self.assertEqual(human_player.move(), 'paper')
+
+    @patch('builtins.input', return_value='scissors')
+    def test_move_returns_scissors(self, mock_input):
+        human_player = HumanPlayer()
+        self.assertEqual(human_player.move(), 'scissors')
 
     @patch('builtins.input', return_value='s')
     def test_move_returns_scissors(self, mock_input):
         human_player = HumanPlayer()
-        self.assertEqual(human_player.move(), 's')
+        self.assertEqual(human_player.move(), 'Oops s is not a valid option')
+
 
 
 class TestReflectPlayer(unittest.TestCase):
