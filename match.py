@@ -108,13 +108,23 @@ class Game:
         self.p2.learn(move2, move1)
 
     def play_game(self):
-        print("Game start!")
+        print("Game start!\n")
         for round in range(3):
             print(f"Round {round}:")
             self.play_round()
-        print("Game over!")
+        print("Game over!\n")
+        print(self.final_score())
+
+    def final_score(self):
+        print(f'Final score:\nPlayer 1: {self.p1_score} - Player 2: {self.p2_score}')
+        if self.p1_score > self.p2_score:
+            return "Player 1 wins!"
+        if self.p1_score < self.p2_score:
+            return "Player 2 wins!"
+        else:
+            return "It is a tie!"
 
 
 if __name__ == '__main__':
-    game = Game(CyclePlayer(), ReflectPlayer())
+    game = Game(RandomPlayer(), ReflectPlayer())
     game.play_game()
