@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import random
+from itertools import cycle
+
 
 """This program plays a game of Rock, Paper, Scissors between two Players,
 and reports both Player's scores each round."""
@@ -30,22 +32,33 @@ class HumanPlayer(Player):
 paper; s: scissors:\n")
 
 
-class ReflectPlayer():
+class ReflectPlayer(Player):
     def __init__(self):
-        self.my_prev_move = None
-        self.their_prev_move = None
-
-    def prev_round(self, my_prev_move, their_prev_move):
-        Player().learn(my_prev_move, their_prev_move)
-        self.my_prev_move = my_prev_move
-        self.their_prev_move = their_prev_move
+        #self.my_move = None
+        self.their_move = None
 
     def move(self):
-        if self.their_prev_move is None:
-            return 'rock'
+        if self.their_move is None:
+            #self.their_move = self.learn(self.my_move, self.their_move)
+            return random.choice(moves)
         else:
-            return self.their_prev_move
+            return self.their_move
 
+    def learn(self, my_move, their_move):
+        self.their_move = their_move
+
+'''
+class CyclePlayer():
+    def __init__(self, p1):
+        self.prev_move = p1.learn()
+        self.moves_iterator = cycle(moves)
+
+    def cycle_move(self):
+        if self.prev_move is None:
+            return next(self.moves_iterator)
+        else:
+            return next(self.moves_iterator)
+'''
 
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
@@ -86,5 +99,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), RandomPlayer())
+    game = Game(RandomPlayer(), ReflectPlayer())
     game.play_game()
