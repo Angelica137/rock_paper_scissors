@@ -36,7 +36,7 @@ def test_play_round_beat_one():
 
 
 def test_play_round_beat_two():
-    '''Test p1 = scissors, p2 = rock -> p1 wins'''
+    '''Test p1 = scissors, p2 = paper -> p1 wins'''
     with patch('match.beats', return_value=True), \
             patch.object(Player, 'move', side_effect=['scissors', 'paper']) \
             as mock_move:
@@ -44,8 +44,8 @@ def test_play_round_beat_two():
         game = Game(Player(), Player())
 
         # Redirect print statements to a StringIO for assertion
-    with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
-        game.play_round()
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            game.play_round()
 
         output = mock_stdout.getvalue().strip()
 
