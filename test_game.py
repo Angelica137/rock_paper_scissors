@@ -260,16 +260,19 @@ class TestGame(unittest.TestCase):
         game = Game(Player(), Player())
         self.assertEqual(game.p2_score, 0)
 
-    def test_game_score_1_0(self):
-        game = Game(Player(), CyclePlayer())
-        game.play_round()
-        self.assertEqual(game.p1_score, 0)
-        self.assertEqual(game.p2_score, 0)
+    def test_game_score(self):
+        with patch.object(CyclePlayer, 'move', return_value='paper'):
+            g = Game(Player(), CyclePlayer())
+            g.play_round()
+            self.assertEqual(g.p1_score, 0)
+            self.assertEqual(g.p2_score, 1)
 
-        game.play_round()
-        self.assertEqual(game.p1_score, 0)
-        self.assertEqual(game.p2_score, 1)
+            g.play_round()
+            self.assertEqual(g.p1_score, 0)
+            self.assertEqual(g.p2_score, 2)
 
-        game.play_round()
-        self.assertEqual(game.p1_score, 1)
-        self.assertEqual(game.p2_score, 1)
+            g.play_round()
+            self.assertEqual(g.p1_score, 0)
+            self.assertEqual(g.p2_score, 3)
+
+            self.assertEqual(g.final_score(), "Player 2 wins!")
