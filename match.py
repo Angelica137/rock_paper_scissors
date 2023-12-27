@@ -17,13 +17,16 @@ class Player:
     def move(self):
         return 'rock'
 
+    def random_move(self):
+        return random.choice(moves)
+
     def learn(self, my_move, their_move):
         pass
 
 
 class RandomPlayer(Player):
     def move(self):
-        return random.choice(moves)
+        return self.random_move()
 
 
 class HumanPlayer(Player):
@@ -42,25 +45,28 @@ class ReflectPlayer(Player):
 
     def move(self):
         if self.their_move is None:
-            return random.choice(moves)
+            return self.random_move()
         else:
             return self.their_move
 
     def learn(self, my_move, their_move):
         self.their_move = their_move
 
-'''
-class CyclePlayer():
-    def __init__(self, p1):
-        self.prev_move = p1.learn()
+
+class CyclePlayer(Player):
+    def __init__(self):
+        self.my_move = None
         self.moves_iterator = cycle(moves)
 
-    def cycle_move(self):
-        if self.prev_move is None:
-            return next(self.moves_iterator)
+    def move(self):
+        if self.my_move is None:
+            return self.random_move()
         else:
             return next(self.moves_iterator)
-'''
+
+    def learn(self, my_move, their_move):
+        self.my_move = my_move
+
 
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
@@ -101,5 +107,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), ReflectPlayer())
+    game = Game(CyclePlayer(), ReflectPlayer())
     game.play_game()
