@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import random
-from itertools import cycle
+from itertools import islice, cycle
 
 
 """This program plays a game of Rock, Paper, Scissors between two Players,
@@ -56,11 +56,16 @@ class ReflectPlayer(Player):
 class CyclePlayer(Player):
     def __init__(self):
         self.my_move = None
-        self.moves_iterator = cycle(moves)
+        self.index = None
+        self.moves_iterator = None
 
     def move(self):
         if self.my_move is None:
-            return self.random_move()
+            move = self.random_move()
+            self.index = moves.index(move) + 1
+            self.moves_iterator = islice(cycle(moves), self.index, None)
+            print(self.index)
+            return move
         else:
             return next(self.moves_iterator)
 

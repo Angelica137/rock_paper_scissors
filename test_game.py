@@ -245,4 +245,8 @@ class TestCyclePlayer(unittest.TestCase):
     def test_cycle_player_init(self):
         cp = CyclePlayer()
         assert callable(cp.move)
-        
+
+    def test_cycle_player_iterator(self):
+        cp = CyclePlayer()
+        cp.my_move = 'paper'
+        self.assertEqual(cp.move(), 'rock')
