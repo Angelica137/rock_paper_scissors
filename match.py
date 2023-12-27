@@ -64,13 +64,13 @@ class CyclePlayer(Player):
             move = self.random_move()
             self.index = moves.index(move) + 1
             self.moves_iterator = islice(cycle(moves), self.index, None)
-            print(self.index)
             return move
         else:
             return next(self.moves_iterator)
 
     def learn(self, my_move, their_move):
         self.my_move = my_move
+
 
 
 def beats(one, two):
