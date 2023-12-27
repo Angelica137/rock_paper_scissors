@@ -34,12 +34,10 @@ paper; s: scissors:\n")
 
 class ReflectPlayer(Player):
     def __init__(self):
-        #self.my_move = None
         self.their_move = None
 
     def move(self):
         if self.their_move is None:
-            #self.their_move = self.learn(self.my_move, self.their_move)
             return random.choice(moves)
         else:
             return self.their_move
