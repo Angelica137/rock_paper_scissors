@@ -221,7 +221,7 @@ class TestHumanPlayer(unittest.TestCase):
         human_player = HumanPlayer()
         self.assertEqual(human_player.move(), 'scissors')
 
-
+# Cannot test else statment coz i have no clue how
 
 
 class TestReflectPlayer(unittest.TestCase):
