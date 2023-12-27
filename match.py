@@ -57,7 +57,7 @@ class CyclePlayer(Player):
     def __init__(self):
         self.my_move = None
         self.index = None
-        self.moves_iterator = None
+        self.moves_iterator = islice(cycle(moves), self.index, None)
 
     def move(self):
         if self.my_move is None:
