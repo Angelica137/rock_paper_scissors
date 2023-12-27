@@ -89,8 +89,8 @@ class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
-        self.p1_score = None
-        self.p2_score = None
+        self.p1_score = 0
+        self.p2_score = 0
 
     def play_round(self):
         move1 = self.p1.move()
@@ -98,6 +98,7 @@ class Game:
         print(f"Player 1: {move1} Player 2: {move2}")
         if beats(move1, move2):
             print("Player 1 wins\n")
+            self.p1_score += 1
         elif tie(move1, move2):
             print("It is a tie\n")
         else:

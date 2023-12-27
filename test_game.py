@@ -258,4 +258,4 @@ I could not test this, it kept failing but the code works as expected
 class TestGame(unittest.TestCase):
     def test_game_class_init(self):
         game = Game(Player(), Player())
-        self.assertEqual(game.p2_score, None)
+        self.assertEqual(game.p2_score, 0)
