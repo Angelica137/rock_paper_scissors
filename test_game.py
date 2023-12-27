@@ -259,3 +259,17 @@ class TestGame(unittest.TestCase):
     def test_game_class_init(self):
         game = Game(Player(), Player())
         self.assertEqual(game.p2_score, 0)
+
+    def test_game_score_1_0(self):
+        game = Game(Player(), CyclePlayer())
+        game.play_round()
+        self.assertEqual(game.p1_score, 0)
+        self.assertEqual(game.p2_score, 0)
+
+        game.play_round()
+        self.assertEqual(game.p1_score, 0)
+        self.assertEqual(game.p2_score, 1)
+
+        game.play_round()
+        self.assertEqual(game.p1_score, 1)
+        self.assertEqual(game.p2_score, 1)

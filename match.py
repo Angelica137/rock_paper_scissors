@@ -103,6 +103,7 @@ class Game:
             print("It is a tie\n")
         else:
             print("Player 2 wins\n")
+            self.p2_score += 1
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
 
