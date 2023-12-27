@@ -235,3 +235,9 @@ class TestReflectPlayer(unittest.TestCase):
         rp.learn('scissors', 'paper')
 
         self.assertEqual(rp.their_move, 'paper')
+
+
+class TestCyclePlayer(unittest.TestCase):
+    def test_cycle_player_init(self):
+        cp = CyclePlayer()
+        assert callable(cp.move)
