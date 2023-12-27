@@ -29,11 +29,11 @@ class RandomPlayer(Player):
 class HumanPlayer(Player):
     def move(self):
         while True:
-            move = input("Hello, player, what is your move?")
+            move = input("What is your move?\n")
             if move in moves:
                 return move
             else:
-                return (f'Oops {move} is not a valid option')
+                print(f'Oops {move} is not a valid option')
 
 
 class ReflectPlayer(Player):
@@ -101,5 +101,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(RandomPlayer(), ReflectPlayer())
+    game = Game(HumanPlayer(), ReflectPlayer())
     game.play_game()

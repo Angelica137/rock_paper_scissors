@@ -221,10 +221,6 @@ class TestHumanPlayer(unittest.TestCase):
         human_player = HumanPlayer()
         self.assertEqual(human_player.move(), 'scissors')
 
-    @patch('builtins.input', return_value='s')
-    def test_move_returns_scissors(self, mock_input):
-        human_player = HumanPlayer()
-        self.assertEqual(human_player.move(), 'Oops s is not a valid option')
 
 
 
