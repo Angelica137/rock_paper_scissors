@@ -72,7 +72,6 @@ class CyclePlayer(Player):
         self.my_move = my_move
 
 
-
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or
@@ -116,7 +115,8 @@ class Game:
         print(self.final_score())
 
     def final_score(self):
-        print(f'Final score:\nPlayer 1: {self.p1_score} - Player 2: {self.p2_score}')
+        print(f'Final score:\nPlayer 1: {self.p1_score} - Player 2: \
+{self.p2_score}')
         if self.p1_score > self.p2_score:
             return "Player 1 wins!"
         if self.p1_score < self.p2_score:

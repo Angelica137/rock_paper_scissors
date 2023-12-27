@@ -19,7 +19,8 @@ def test_random_player_returns_paper():
 def test_play_round_beat_one():
     '''Test p1 = rock, p2 = scissors -> p1 wins'''
     with patch('match.beats', return_value=True), \
-         patch.object(Player, 'move', side_effect=['rock', 'scissors']) as mock_move:
+            patch.object(Player, 'move', side_effect=['rock', 'scissors']) \
+            as mock_move:
 
         game = Game(Player(), Player())
 
@@ -37,13 +38,14 @@ def test_play_round_beat_one():
 def test_play_round_beat_two():
     '''Test p1 = scissors, p2 = rock -> p1 wins'''
     with patch('match.beats', return_value=True), \
-         patch.object(Player, 'move', side_effect=['scissors', 'paper']) as mock_move:
-      
+            patch.object(Player, 'move', side_effect=['scissors', 'paper']) \
+            as mock_move:
+
         game = Game(Player(), Player())
 
         # Redirect print statements to a StringIO for assertion
-        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
-            game.play_round()
+    with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+        game.play_round()
 
         output = mock_stdout.getvalue().strip()
 
@@ -55,8 +57,9 @@ def test_play_round_beat_two():
 def test_play_round_beat_three():
     '''Test p1 = paper, p2 = rock -> p1 wins'''
     with patch('match.beats', return_value=True), \
-         patch.object(Player, 'move', side_effect=['paper', 'rock']) as mock_move:
-        
+            patch.object(Player, 'move', side_effect=['paper', 'rock']) \
+            as mock_move:
+
         game = Game(Player(), Player())
 
         # Redirect print statements to a StringIO for assertion
@@ -246,14 +249,16 @@ class TestCyclePlayer(unittest.TestCase):
         moves = {"rock", "paper", "scissors"}
         self.assertIn(cp.move(), moves)
 
+
 '''
 I could not test this, it kept failing but the code works as expected
     def test_cycle_player_iterator(self):
         cp = CyclePlayer()
         cp.learn("paper", "rock")
-        
+
         self.assertEqual(cp.move(), 'scissors')
 '''
+
 
 class TestGame(unittest.TestCase):
     def test_game_class_init(self):
