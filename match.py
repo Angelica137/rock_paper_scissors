@@ -89,6 +89,8 @@ class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
+        self.p1_score = None
+        self.p2_score = None
 
     def play_round(self):
         move1 = self.p1.move()

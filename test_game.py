@@ -17,11 +17,10 @@ def test_random_player_returns_paper():
 
 
 def test_play_round_beat_one():
-    
     '''Test p1 = rock, p2 = scissors -> p1 wins'''
     with patch('match.beats', return_value=True), \
          patch.object(Player, 'move', side_effect=['rock', 'scissors']) as mock_move:
-        
+
         game = Game(Player(), Player())
 
         # Redirect print statements to a StringIO for assertion
@@ -39,7 +38,7 @@ def test_play_round_beat_two():
     '''Test p1 = scissors, p2 = rock -> p1 wins'''
     with patch('match.beats', return_value=True), \
          patch.object(Player, 'move', side_effect=['scissors', 'paper']) as mock_move:
-        
+      
         game = Game(Player(), Player())
 
         # Redirect print statements to a StringIO for assertion
@@ -255,3 +254,8 @@ I could not test this, it kept failing but the code works as expected
         
         self.assertEqual(cp.move(), 'scissors')
 '''
+
+class TestGame(unittest.TestCase):
+    def test_game_class_init(self):
+        game = Game(Player(), Player())
+        self.assertEqual(game.p2_score, None)
