@@ -197,10 +197,6 @@ def test_match_paper_v_paper(capsys):
         assert "It is a tie\n" in captured.out
 
 
-
-
-
-
 class TestHumanPlayer(unittest.TestCase):
     def test_human_player_initialisation(self):
         hp = HumanPlayer()
