@@ -223,3 +223,8 @@ class TestReflectPlayer(unittest.TestCase):
     def test_reflet_player_initialisation(self):
         rp = ReflectPlayer()
         assert callable(rp.move)
+
+    @patch('random.choice', return_value='rock')
+    def test_reflet_player_move_1_returns_random(self, mock_input):
+        rp = ReflectPlayer()
+        self.assertEqual(rp.move(), 'rock')
