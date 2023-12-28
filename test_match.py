@@ -281,3 +281,7 @@ class TestGame(unittest.TestCase):
             self.assertEqual(g.p2_score, 3)
 
             self.assertEqual(g.final_score(), "Player 2 wins!")
+
+
+if __name__ == '__main__':
+    unittest.main()
